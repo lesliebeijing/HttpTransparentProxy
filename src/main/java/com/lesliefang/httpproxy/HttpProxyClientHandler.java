@@ -62,8 +62,8 @@ public class HttpProxyClientHandler extends ChannelInboundHandlerAdapter {
                      * 所以无论是连接客户端的 clientChannel 还是连接远端主机的 remoteChannel 都只需要一个 RelayHandler 就行了。
                      * 代理服务器在中间做转发。
                      *
-                     * 客户端   --->  clientChannel --->  remoteChannel ---> 远端主机
-                     * 远端主机 --->  remoteChannel ----> clientChannel  ---> 客户端
+                     * 客户端   --->  clientChannel --->  代理 ---> remoteChannel ---> 远端主机
+                     * 远端主机 --->  remoteChannel  --->  代理 ---> clientChannel ---> 客户端
                      */
                     clientChannel.pipeline().remove(HttpRequestDecoder.class);
                     clientChannel.pipeline().remove(HttpResponseEncoder.class);
